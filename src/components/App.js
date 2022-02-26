@@ -1,52 +1,14 @@
-import logo from "./logo.svg";
+import Header from "./Header";
+import Main from "./Main";
+import Footer from "./Footer";
 
 function App() {
   return (
     <div className="App">
       <body class="page">
-        <header class="header">
-          <img
-            src="<%= require('./images/header_logo.svg')%>"
-            alt="logo Practicum"
-            class="header__logo"
-          />
-        </header>
-        <main>
-          <section class="profile">
-            <div class="profile__box">
-              <div class="profile__avatar">
-                <img
-                  src="<%= require('./images/profile-picture.jpg')%>"
-                  alt="Profile photo"
-                  class="profile__avatar-image"
-                />
-                <button
-                  class="profile__avatar-button"
-                  id="edit-avatar-button"
-                  type="button"
-                ></button>
-              </div>
-              <div class="profile__info">
-                <h1 class="profile__name" id="profile-name">
-                  Jacques Cousteau
-                </h1>
-                <p class="profile__occupation" id="profile-description">
-                  Explorer
-                </p>
-                <button
-                  class="profile__edit-button"
-                  id="open-modal-button"
-                  type="button"
-                ></button>
-              </div>
-            </div>
-            <button class="profile__add-button" type="button"></button>
-          </section>
-          <section class="elements"></section>
-        </main>
-        <footer class="footer">
-          <p class="footer__copyright">&copy; 2021 Ekaterina Cratcha</p>
-        </footer>
+        <Header />
+        <Main />
+        <Footer />
         <div class="modal modal_type_avatar" id="change-avatar-modal">
           <div class="modal__content">
             <button
