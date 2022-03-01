@@ -1,37 +1,36 @@
-function Main() {
+import React from "react";
+
+function Main({
+  onEditProfileClick,
+  onAddPlaceClick,
+  onEditAvatarClick,
+  onCardClick,
+}) {
   return (
     <main>
-      <section class="profile">
-        <div class="profile__box">
-          <div class="profile__avatar">
-            <img
-              src="<%= require('./images/profile-picture.jpg')%>"
-              alt="Profile photo"
-              class="profile__avatar-image"
-            />
-            <button
-              class="profile__avatar-button"
-              id="edit-avatar-button"
-              type="button"
-            ></button>
+      <section className="profile">
+        <div className="profile__box">
+          <div className="profile__avatar" onClick={onEditAvatarClick}>
+            <img src="" alt="Profile photo" className="profile__avatar-image" />
+            <button className="profile__avatar-button" type="button"></button>
           </div>
-          <div class="profile__info">
-            <h1 class="profile__name" id="profile-name">
-              Jacques Cousteau
-            </h1>
-            <p class="profile__occupation" id="profile-description">
-              Explorer
-            </p>
+          <div className="profile__info">
+            <h1 className="profile__name"></h1>
+            <p className="profile__occupation"></p>
             <button
-              class="profile__edit-button"
-              id="open-modal-button"
+              className="profile__edit-button"
               type="button"
+              onClick={onEditProfileClick}
             ></button>
           </div>
         </div>
-        <button class="profile__add-button" type="button"></button>
+        <button
+          className="profile__add-button"
+          type="button"
+          onClick={onAddPlaceClick}
+        ></button>
       </section>
-      <section class="elements"></section>
+      <section className="elements"></section>
     </main>
   );
 }
