@@ -3,8 +3,8 @@ import logo from "../images/header_logo.svg";
 
 function Header() {
   return (
-    <header class="header">
-      <img src={logo} alt="logo Practicum" class="header__logo" />
+    <header className="header">
+      <img src={logo} alt="logo Practicum" className="header__logo" />
     </header>
   );
 }
