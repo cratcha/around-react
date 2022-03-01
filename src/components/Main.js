@@ -1,5 +1,6 @@
 import React from "react";
 import api from "../utils/api";
+import Card from "./Card";
 
 function Main({
   onEditProfileClick,
@@ -10,14 +11,16 @@ function Main({
   const [userName, setUserName] = React.useState("");
   const [userDescription, setUserDescription] = React.useState("");
   const [userAvatar, setUserAvatar] = React.useState("");
+  const [cards, setCards] = React.useState([]);
 
   React.useEffect(() => {
     api
       .getAppInfo()
-      .then(([cardDara, userData]) => {
+      .then(([cardData, userData]) => {
         setUserName(userData.name);
         setUserDescription(userData.about);
         setUserAvatar(userData.avatar);
+        setCards(cardData);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -50,7 +53,13 @@ function Main({
           onClick={onAddPlaceClick}
         ></button>
       </section>
-      <section className="elements"></section>
+      <section>
+        <ul className="elements">
+          {cards.map((card) => (
+            <Card key={card._id} card={card} onCardClick={onCardClick} />
+          ))}
+        </ul>
+      </section>
     </main>
   );
 }

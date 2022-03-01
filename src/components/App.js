@@ -11,6 +11,7 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
 
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
+  const [selectedCard, setSelectedCard] = React.useState(null);
 
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true);
@@ -28,8 +29,12 @@ function App() {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setEditAvatarPopupOpen(false);
+    setSelectedCard(null);
   }
 
+  function handleCardClick(card) {
+    setSelectedCard(card);
+  }
   return (
     <div className="page">
       <Header />
@@ -37,6 +42,7 @@ function App() {
         onEditProfileClick={handleEditProfileClick}
         onAddPlaceClick={handleAddPlaceClick}
         onEditAvatarClick={handleEditAvatarClick}
+        onCardClick={handleCardClick}
       />
       <Footer />
       <PopupWithForm
@@ -169,7 +175,7 @@ function App() {
         buttonText="Yes"
       />
 
-      <ImagePopup card="" onClose={closeAllPopups} />
+      <ImagePopup card={selectedCard} onClose={closeAllPopups} />
       {/* <div class="modal modal_type_avatar" id="change-avatar-modal">
           <div class="modal__content">
             <button
