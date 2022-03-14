@@ -29,7 +29,7 @@ function Card({ card, onCardClick, onCardDelete, onCardLike }) {
   return (
     <li className="element">
       <button
-        className="element__trash-button"
+        className={cardDeleteButtonClassName}
         type="button"
         onClick={handleDeleteClick}
       ></button>
@@ -43,7 +43,7 @@ function Card({ card, onCardClick, onCardDelete, onCardLike }) {
         <h2 className="element__title">{card.name}</h2>
         <div className="element__like-box">
           <button
-            className="element__like-button"
+            className={cardLikeButtonClassName}
             type="button"
             onClick={handleLikeClick}
           ></button>

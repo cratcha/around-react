@@ -8,6 +8,7 @@ function Main({
   onAddPlaceClick,
   onEditAvatarClick,
   onCardClick,
+  onCardLike,
   cards,
 }) {
   const currentUser = React.useContext(CurrentUserContext);
@@ -43,7 +44,12 @@ function Main({
       <section>
         <ul className="elements">
           {cards.map((card) => (
-            <Card key={card._id} card={card} onCardClick={onCardClick} />
+            <Card
+              key={card._id}
+              card={card}
+              onCardLike={onCardLike}
+              onCardClick={onCardClick}
+            />
           ))}
         </ul>
       </section>
