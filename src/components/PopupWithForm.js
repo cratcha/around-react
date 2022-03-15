@@ -7,6 +7,7 @@ function PopupWithForm({
   children,
   buttonText = "Save",
   isOpen,
+  onSubmit,
 }) {
   return (
     <div className={`modal modal_type_${name} ${isOpen ? "modal_open" : ""}`}>
@@ -17,7 +18,7 @@ function PopupWithForm({
           onClick={onClose}
         ></button>
         <h2 className="modal__title">{title}</h2>
-        <form className="modal__form" name={name}>
+        <form className="modal__form" name={name} onSubmit={onSubmit}>
           {children}
           <button type="submit" className="modal__submit-button">
             {buttonText}

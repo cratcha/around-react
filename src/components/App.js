@@ -3,6 +3,7 @@ import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
+import EditProfilePopup from "./EditProfilePopup";
 import ImagePopup from "./ImagePopup";
 import api from "../utils/api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
@@ -57,7 +58,7 @@ function App() {
 
     // Send a request to the API and getting the updated card data
     api
-      .changeLikeCardStatus(card._id, !isLiked)
+      .changeLikeStatus(card._id, !isLiked)
       .then((newCard) => {
         setCards((state) =>
           state.map((c) => (c._id === card._id ? newCard : c))
@@ -68,9 +69,19 @@ function App() {
 
   function handleCardDelete(card) {
     api
-      .removeCard(card._id)
+      .deleteCard(card._id)
       .then(() => {
         setCards((cards) => cards.filter((c) => c._id !== card._id));
+      })
+      .catch((err) => console.log(err));
+  }
+
+  function handleUpdateUser({ name, about }) {
+    api
+      .editUserInfo({ name, about })
+      .then((newUserData) => {
+        setCurrentUser(newUserData);
+        closeAllPopups();
       })
       .catch((err) => console.log(err));
   }
@@ -89,39 +100,11 @@ function App() {
           cards={cards}
         />
         <Footer />
-        <PopupWithForm
-          title="Edit Profile"
-          name="edit"
+        <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
-        >
-          <label>
-            <input
-              className="modal__input"
-              name="name"
-              placeholder="Name"
-              id="name"
-              minLength="2"
-              maxLength="40"
-              required
-            />
-            <span className="modal__error-text" id="name-error">
-              Please fill out this field.
-            </span>
-            <input
-              className="modal__input"
-              name="about"
-              placeholder="About me"
-              id="description"
-              minLength="2"
-              maxLength="200"
-              required
-            />
-            <span className="modal__error-text" id="description-error">
-              Please fill out this field.
-            </span>
-          </label>
-        </PopupWithForm>
+          onUpdateUser={handleUpdateUser}
+        />
 
         <PopupWithForm
           title="New Place"
