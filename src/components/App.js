@@ -4,6 +4,7 @@ import Main from "./Main";
 import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
 import EditProfilePopup from "./EditProfilePopup";
+import EditAvatarPopup from "./EditAvatarPopup";
 import ImagePopup from "./ImagePopup";
 import api from "../utils/api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
@@ -86,6 +87,15 @@ function App() {
       .catch((err) => console.log(err));
   }
 
+  function handleUpdateAvatar(avatar) {
+    api
+      .updateAvatar(avatar)
+      .then((newUserData) => {
+        setCurrentUser(newUserData);
+        closeAllPopups();
+      })
+      .catch((err) => console.log(err));
+  }
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -175,26 +185,11 @@ function App() {
           </label>
         </PopupWithForm>
 
-        <PopupWithForm
-          title="Change Profile Picture"
-          name="edit-avatar"
+        <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
-        >
-          <label>
-            <input
-              className="modal__input"
-              name="link"
-              placeholder="Image link"
-              id="avatar"
-              type="url"
-              required
-            />
-            <span className="modal__error-text" id="avatar-error">
-              Please enter a web address
-            </span>
-          </label>
-        </PopupWithForm>
+          onUpdateAvatar={handleUpdateAvatar}
+        />
 
         <PopupWithForm
           title="Are you sure?"
