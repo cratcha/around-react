@@ -44,36 +44,34 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
       onClose={onClose}
       onSubmit={handleSubmit}
     >
-      <label>
-        <input
-          className="modal__input"
-          name="name"
-          placeholder="Name"
-          id="name"
-          minLength="2"
-          maxLength="40"
-          required
-          value={name || ""}
-          onChange={handleNameChange}
-        />
-        <span className="modal__error-text" id="name-error">
-          Please fill out this field.
-        </span>
-        <input
-          className="modal__input"
-          name="about"
-          placeholder="About me"
-          id="description"
-          minLength="2"
-          maxLength="200"
-          required
-          value={description || ""}
-          onChange={handleDescriptionChange}
-        />
-        <span className="modal__error-text" id="description-error">
-          Please fill out this field.
-        </span>
-      </label>
+      <input
+        className="modal__input"
+        name="name"
+        placeholder="Name"
+        id="name"
+        minLength="2"
+        maxLength="40"
+        required
+        value={name || ""}
+        onChange={handleNameChange}
+      />
+      <span className="modal__error-text" id="name-error">
+        Please fill out this field.
+      </span>
+      <input
+        className="modal__input"
+        name="about"
+        placeholder="About me"
+        id="description"
+        minLength="2"
+        maxLength="200"
+        required
+        value={description || ""}
+        onChange={handleDescriptionChange}
+      />
+      <span className="modal__error-text" id="description-error">
+        Please fill out this field.
+      </span>
     </PopupWithForm>
   );
 }

@@ -23,20 +23,18 @@ function EditAvatarPopup({ isOpen, onUpdateAvatar, onClose }) {
       onClose={onClose}
       onSubmit={handleSubmit}
     >
-      <label>
-        <input
-          className="modal__input"
-          name="link"
-          placeholder="Image link"
-          id="avatar"
-          type="url"
-          required
-          ref={inputRef}
-        />
-        <span className="modal__error-text" id="avatar-error">
-          Please enter a web address
-        </span>
-      </label>
+      <input
+        className="modal__input"
+        name="link"
+        placeholder="Image link"
+        id="avatar"
+        type="url"
+        required
+        ref={inputRef}
+      />
+      <span className="modal__error-text" id="avatar-error">
+        Please enter a web address
+      </span>
     </PopupWithForm>
   );
 }

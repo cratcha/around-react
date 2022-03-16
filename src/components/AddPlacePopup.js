@@ -34,36 +34,34 @@ function AddPlacePopup({ isOpen, onAddPlace, onClose }) {
       onClose={onClose}
       onSubmit={handleSubmit}
     >
-      <label>
-        <input
-          className="modal__input"
-          name="name"
-          placeholder="name"
-          id="title"
-          type="text"
-          required
-          minLength="1"
-          maxLength="30"
-          value={name}
-          onChange={handleNameChange}
-        />
-        <span className="modal__error-text" id="title-error">
-          Please fill out this field.
-        </span>
-        <input
-          className="modal__input"
-          name="link"
-          placeholder="Image link"
-          id="link"
-          type="url"
-          required
-          value={link}
-          onChange={handleLinkChange}
-        />
-        <span className="modal__error-text" id="link-error">
-          Please enter a web address
-        </span>
-      </label>
+      <input
+        className="modal__input"
+        name="name"
+        placeholder="name"
+        id="title"
+        type="text"
+        required
+        minLength="1"
+        maxLength="30"
+        value={name}
+        onChange={handleNameChange}
+      />
+      <span className="modal__error-text" id="title-error">
+        Please fill out this field.
+      </span>
+      <input
+        className="modal__input"
+        name="link"
+        placeholder="Image link"
+        id="link"
+        type="url"
+        required
+        value={link}
+        onChange={handleLinkChange}
+      />
+      <span className="modal__error-text" id="link-error">
+        Please enter a web address
+      </span>
     </PopupWithForm>
   );
 }
