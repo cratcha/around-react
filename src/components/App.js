@@ -5,6 +5,7 @@ import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
+import AddPlacePopup from "./AddPlacePopup";
 import ImagePopup from "./ImagePopup";
 import api from "../utils/api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
@@ -96,6 +97,17 @@ function App() {
       })
       .catch((err) => console.log(err));
   }
+
+  function handleAddPlaceSubmit(newCard) {
+    api
+      .addNewCard(newCard)
+      .then((newCardFull) => {
+        setCards([newCardFull, ...cards]);
+        closeAllPopups();
+      })
+      .catch((err) => console.log(err));
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -116,74 +128,11 @@ function App() {
           onUpdateUser={handleUpdateUser}
         />
 
-        <PopupWithForm
-          title="New Place"
-          name="new-card"
+        <AddPlacePopup
           isOpen={isAddPlacePopupOpen}
           onClose={closeAllPopups}
-        >
-          <label>
-            <input
-              className="modal__input"
-              name="name"
-              placeholder="name"
-              id="title"
-              type="text"
-              required
-              minLength="1"
-              maxLength="30"
-            />
-            <span className="modal__error-text" id="title-error">
-              Please fill out this field.
-            </span>
-            <input
-              className="modal__input"
-              name="link"
-              placeholder="Image link"
-              id="link"
-              type="url"
-              required
-            />
-            <span className="modal__error-text" id="link-error">
-              Please enter a web address
-            </span>
-          </label>
-        </PopupWithForm>
-
-        <PopupWithForm
-          title="New Place"
-          name="new-card"
-          buttonText="Create"
-          isOpen={isAddPlacePopupOpen}
-          onClose={closeAllPopups}
-        >
-          <label>
-            <input
-              className="modal__input"
-              name="name"
-              placeholder="name"
-              id="title"
-              type="text"
-              required
-              minLength="1"
-              maxLength="30"
-            />
-            <span className="modal__error-text" id="title-error">
-              Please fill out this field.
-            </span>
-            <input
-              className="modal__input"
-              name="link"
-              placeholder="Image link"
-              id="link"
-              type="url"
-              required
-            />
-            <span className="modal__error-text" id="link-error">
-              Please enter a web address
-            </span>
-          </label>
-        </PopupWithForm>
+          onAddPlace={handleAddPlaceSubmit}
+        />
 
         <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}
