@@ -8,7 +8,7 @@ function ImagePopup({ card, onClose }) {
           className="modal__close-button"
           type="button"
           onClick={onClose}
-        ></button>
+        />
         <img
           className="modal__image"
           src={card ? card.link : ""}

@@ -16,7 +16,7 @@ function PopupWithForm({
           className="modal__close-button"
           type="button"
           onClick={onClose}
-        ></button>
+        />
         <h2 className="modal__title">{title}</h2>
         <form className="modal__form" name={name} onSubmit={onSubmit}>
           {children}

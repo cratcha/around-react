@@ -19,7 +19,7 @@ function App() {
   const [selectedCard, setSelectedCard] = React.useState(null);
   const [cards, setCards] = React.useState([]);
 
-  const [currentUser, setCurrentUser] = React.useState([]);
+  const [currentUser, setCurrentUser] = React.useState({});
 
   React.useEffect(() => {
     api
@@ -56,14 +56,14 @@ function App() {
 
   function handleCardLike(card) {
     // Check one more time if this card was already liked
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes.some((item) => item._id === currentUser._id);
 
     // Send a request to the API and getting the updated card data
     api
       .changeLikeStatus(card._id, !isLiked)
       .then((newCard) => {
         setCards((state) =>
-          state.map((c) => (c._id === card._id ? newCard : c))
+          state.map((item) => (item._id === card._id ? newCard : item))
         );
       })
       .catch((err) => console.log(err));
@@ -73,7 +73,7 @@ function App() {
     api
       .deleteCard(card._id)
       .then(() => {
-        setCards((cards) => cards.filter((c) => c._id !== card._id));
+        setCards((cards) => cards.filter((item) => item._id !== card._id));
       })
       .catch((err) => console.log(err));
   }
@@ -101,8 +101,8 @@ function App() {
   function handleAddPlaceSubmit(newCard) {
     api
       .addNewCard(newCard)
-      .then((newCardFull) => {
-        setCards([newCardFull, ...cards]);
+      .then((newCard) => {
+        setCards([newCard, ...cards]);
         closeAllPopups();
       })
       .catch((err) => console.log(err));

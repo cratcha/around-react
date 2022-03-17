@@ -24,7 +24,7 @@ function Main({
               alt="Profile photo"
               className="profile__avatar-image"
             />
-            <button className="profile__avatar-button" type="button"></button>
+            <button className="profile__avatar-button" type="button" />
           </div>
           <div className="profile__info">
             <h1 className="profile__name">{currentUser.name}</h1>
@@ -33,14 +33,14 @@ function Main({
               className="profile__edit-button"
               type="button"
               onClick={onEditProfileClick}
-            ></button>
+            />
           </div>
         </div>
         <button
           className="profile__add-button"
           type="button"
           onClick={onAddPlaceClick}
-        ></button>
+        />
       </section>
       <section>
         <ul className="elements">
